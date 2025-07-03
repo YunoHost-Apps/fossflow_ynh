@@ -52,8 +52,8 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_commit"
         
         [resources.sources.ynh_build]
-        url = "https://github.com/YunoHost-Apps/it-tools_ynh/releases/download/v2025.05.25-c9b448ce/it-tools_v2025.05.25-c9b448ce_ynh.zip"
-        sha256 = "3257327e16a1118040efe8116afaad81925572f1767bdfd8c332a1f0494af4fe"
+        url = "https://github.com/oleole39/fossflow_ynh/releases/download/v2025.07.02-7ec0a930/FossFLOW_v2025.07.02-7ec0a930_ynh.zip"
+        sha256 = "1dcd84f97379e238398c297406a70d90f3ab467b4fae58ab5f22929e049fd1c0"
         format = "zip"
         extract = true
         in_subdir = true
