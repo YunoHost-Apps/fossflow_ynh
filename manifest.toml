@@ -7,12 +7,11 @@ name = "FossFLOW"
 description.en = "Isometric diagramming tool"
 description.fr = "Outil pour réaliser des diagrammes isométriques"
 
-version = "2025.07.02~ynh1"
+version = "2025.07.02~ynh2"
 
 maintainers = ["oleole39"]
 
 [upstream]
-# NB: Only the "license" key is mandatory. Remove entries for which there's no relevant data
 license = "Unlicense"
 userdoc = "https://github.com/stan-smith/FossFLOW?tab=readme-ov-file#how-to-use"
 code = "https://github.com/stan-smith/FossFLOW"
@@ -24,9 +23,9 @@ architectures = "all"
 multi_instance = true
 ldap = false
 sso = false
-disk = "50M"
-ram.build = "50M"
-ram.runtime = "50M"
+disk = "20M"
+ram.build = "1.2G"
+ram.runtime = "0M"
 
 [install]
     [install.domain]
