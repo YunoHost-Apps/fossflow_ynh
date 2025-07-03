@@ -53,7 +53,7 @@ ram.runtime = "50M"
         
         [resources.sources.ynh_build]
         url = "https://github.com/oleole39/fossflow_ynh/releases/download/v2025.07.02-7ec0a930/FossFLOW_v2025.07.02-7ec0a930_ynh.zip"
-        sha256 = "1dcd84f97379e238398c297406a70d90f3ab467b4fae58ab5f22929e049fd1c0"
+        sha256 = "29ad025f111e45a687eeb959400cde52159e5aa4bdf4247161ddea1186a7022c"
         format = "zip"
         extract = true
         in_subdir = true
