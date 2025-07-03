@@ -69,6 +69,7 @@ jobs:
 
       - name: Create pull request or update existing one
         run: |
+          BASE_BRANCH_NAME=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@refs/remotes/origin/@@')
           CURRENT_BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
           PR_URL="$(gh pr list --head ${CURRENT_BRANCH_NAME} --state open --json url --jq .[].url)"
           PR_BODY="Upstream upgrade is now built for YNH and ready to be released in the current repository: ${{ steps.draft_release.outputs.url }}\n
@@ -84,7 +85,7 @@ jobs:
             echo -e $PR_BODY | gh pr edit --title 'Upgrade to ${{ steps.build_release.outputs.YNH_RELEASE_VERSION }}' --body-file -
             exit 0
           else
-            echo -e $PR_BODY | gh pr create --base master --head ${CURRENT_BRANCH_NAME} --title 'Upgrade to ${{ steps.build_release.outputs.YNH_RELEASE_VERSION }}' --body-file -
+            echo -e $PR_BODY | gh pr create --base ${BASE_BRANCH_NAME} --head ${CURRENT_BRANCH_NAME} --title 'Upgrade to ${{ steps.build_release.outputs.YNH_RELEASE_VERSION }}' --body-file -
           fi 
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
