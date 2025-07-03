@@ -31,7 +31,8 @@ function ynh_optional_source_customizations {
     #=================================================
     # SOURCE CUSTOMIZATION COMMANDS (OPTIONAL)
     #=================================================
-    echo "this is a placeholder as an empty bash functions generates an error" # Replace with your commands
+    echo 'PUBLIC_URL="/__YNH_SUBDIR_PATH__"' > .env
+    #echo "this is a placeholder as an empty bash functions generates an error" # Replace with your commands
 }
 
 function ynh_build_instructions {
