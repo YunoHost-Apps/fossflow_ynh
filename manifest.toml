@@ -7,7 +7,7 @@ name = "FossFLOW"
 description.en = "Isometric diagramming tool"
 description.fr = "Outil pour réaliser des diagrammes isométriques"
 
-version = "2025.07.02~ynh1"
+version = "2025.07.02~ynh2"
 
 maintainers = ["oleole39"]
 
