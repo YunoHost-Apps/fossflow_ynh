@@ -38,8 +38,8 @@ function ynh_build_instructions {
     #=================================================
     # BUILD INSTRUCTIONS (REQUIRED)
     #=================================================
-    PUBLIC_URL="__YNH_SUBDIR_PATH__" npm install
-    npm run build
+    npm install
+    PUBLIC_URL="__YNH_SUBDIR_PATH__" npm run build
 }
 
 #=================================================
