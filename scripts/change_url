@@ -7,17 +7,17 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# CHANGE HARDCODED URL IN APP FILES
+# CHANGE HARDCODED URLS IN APP FILES
 #=================================================
 
-# Prepare $newpath for string replacement (empty if $path is root or $path if subdir is defined)
+# Prepare var for string replacement (empty if $path is root or $path if subdir is defined)
 old_path_2=""
 if [[ $old_path != '/' ]]; then old_path_2=$old_path; fi
 new_path_2=""
 if [[ $new_path != '/' ]]; then new_path_2=$new_path; fi
 
-# Replace path placeholder recursively in all files of the app folder
-grep -rli "$old_domain$old_path_2" $install_dir/* | xargs sed -i "$old_domain$old_path_2@https://$new_domain$new_path_2@g"
+# Replace old URLs recursively in all files of the app folder
+grep -rli "$old_domain$old_path_2" $install_dir/* | xargs sed -i "$old_domain$old_path_2@$new_domain$new_path_2@g"
 
 #=================================================
 # MODIFY URL IN NGINX CONF
