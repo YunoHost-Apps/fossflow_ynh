@@ -3,10 +3,7 @@ name: ynh-build-on-push-to-testing
 on:
   push:
     branches: [ "testing" ]
-
-permissions:
-  contents: write #required for 'draft_release', cf. https://github.com/softprops/action-gh-release/issues/572
-
+    
 jobs: 
   ynh-app-release:
     runs-on: ubuntu-latest
@@ -22,7 +19,7 @@ jobs:
           chmod +x scripts/build
           # Run build script while monitoring time & RAM use
           build_log=$(mktemp)
-          /usr/bin/time --format "##Stats##: |Time: %E |Peak RAM (kb): %M" --output="$build_log" ./scripts/build
+          /usr/bin/time --format "##Stats##: |Time: %E |Peak RAM (kb): %M" --output="$build_log" ./scripts/build ${{ github.head_ref || github.ref_name }}
           cat $build_log
           # Exports stats (BUILD_STORAGE_USE is already exported within the previous script)
           build_stats=$(cat $build_log | tail -n 1 | grep "##Stats##")
@@ -70,12 +67,7 @@ jobs:
 
       - name: Create pull request or update existing one
         run: |
-          BASE_BRANCH_NAME=${{github.event.repository.default_branch}}
-          CURRENT_BRANCH_NAME=${{github.ref_name}}
-          if [ "$CURRENT_BRANCH_NAME" = "$BASE_BRANCH_NAME" ]; then
-              #Identical base and target branch, no pull request
-              exit 0;
-          fi
+          CURRENT_BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
           PR_URL="$(gh pr list --head ${CURRENT_BRANCH_NAME} --state open --json url --jq .[].url)"
           PR_BODY="Upstream upgrade is now built for YNH and ready to be released in the current repository: ${{ steps.draft_release.outputs.url }}\n
           - [ ] Make sure the release is published before testing this PR.\n
@@ -90,7 +82,7 @@ jobs:
             echo -e $PR_BODY | gh pr edit --title 'Upgrade to ${{ steps.build_release.outputs.YNH_RELEASE_VERSION }}' --body-file -
             exit 0
           else
-            echo -e $PR_BODY | gh pr create --base ${BASE_BRANCH_NAME} --head ${CURRENT_BRANCH_NAME} --title 'Upgrade to ${{ steps.build_release.outputs.YNH_RELEASE_VERSION }}' --body-file -
+            echo -e $PR_BODY | gh pr create --base master --head ${CURRENT_BRANCH_NAME} --title 'Upgrade to ${{ steps.build_release.outputs.YNH_RELEASE_VERSION }}' --body-file -
           fi 
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
