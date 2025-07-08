@@ -4,7 +4,7 @@ on:
   workflow_dispatch
 
 permissions: 
-    contents: write
+    contents: write #required for 'draft_release', cf. https://github.com/softprops/action-gh-release/issues/572
 
 jobs: 
   ynh-app-release:
