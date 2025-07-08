@@ -45,8 +45,8 @@ ram.runtime = "10M"
 
         [resources.sources.main]
         # This is not used as we are using git clone. It's only here for autoupdate.
-        url = "https://github.com/stan-smith/FossFLOW/archive/ce0c4c8633336f1765317b5cc7f3fa30e4b349d5.tar.gz"
-        sha256 = "f20586e17e94e94103bf9eb3809f70424e184468a895bb61e2096d699d0102bf"
+        url = "https://github.com/stan-smith/FossFLOW/archive/4ec5da701e532b5b56ae19cb405f9a67d21784c4.tar.gz"
+        sha256 = "134ecffd32b2cb80dc93c2156fa15e4b76b63bf1e4f75ac6db09e8c724111b8c"
         prefetch = false
         autoupdate.strategy = "latest_github_commit"
         
