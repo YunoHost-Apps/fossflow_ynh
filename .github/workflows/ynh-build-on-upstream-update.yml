@@ -4,6 +4,9 @@ on:
   pull_request:
     types: [opened]
 
+permissions: 
+    contents: write
+
 jobs: 
   ynh-app-release:
     if: ${{ github.event.pull_request.user.login == 'yunohost-bot' && 

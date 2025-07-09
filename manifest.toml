@@ -7,7 +7,7 @@ name = "FossFLOW"
 description.en = "Isometric diagramming tool"
 description.fr = "Outil pour réaliser des diagrammes isométriques"
 
-version = "2025.07.02~ynh4"
+version = "2025.07.07~ynh1"
 
 maintainers = ["oleole39"]
 
@@ -45,14 +45,14 @@ ram.runtime = "10M"
 
         [resources.sources.main]
         # This is not used as we are using git clone. It's only here for autoupdate.
-        url = "https://github.com/stan-smith/FossFLOW/archive/7ec0a930b1871ae43e237808030b1b81aaab36bf.tar.gz"
-        sha256 = "f9bded51895a00db3d5ee66401f2321f6c1ef3cbd944f29454bae3234430d583"
+        url = "https://github.com/stan-smith/FossFLOW/archive/4ec5da701e532b5b56ae19cb405f9a67d21784c4.tar.gz"
+        sha256 = "134ecffd32b2cb80dc93c2156fa15e4b76b63bf1e4f75ac6db09e8c724111b8c"
         prefetch = false
         autoupdate.strategy = "latest_github_commit"
         
         [resources.sources.ynh_build]
-        url = "https://github.com/oleole39/fossflow_ynh/releases/download/v2025.07.02-7ec0a930/FossFLOW_v2025.07.02-7ec0a930_ynh.zip"
-        sha256 = "32f386055b34b696c555241514b41fd4d3515e76a00cfad17ffe2f1fd2fafd16"
+        url = "https://github.com/oleole39/fossflow_ynh/releases/download/v2025.07.07-4ec5da70/FossFLOW_v2025.07.07-4ec5da70_ynh.zip"
+        sha256 = "138e704d1d3604ffa49d8704e736da346a946d1f19568454907e037e99d3e513"
         format = "zip"
         extract = true
         in_subdir = true
