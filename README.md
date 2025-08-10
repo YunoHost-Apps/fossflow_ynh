@@ -10,12 +10,16 @@ It shall NOT be edited by hand.
 
 Isometric diagramming tool
 
-[![Version: 2025.07.06~ynh1](https://img.shields.io/badge/Version-2025.07.06~ynh1-rgba(0,150,0,1)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/fossflow/)
+[![Version: 2025.08.07~ynh1](https://img.shields.io/badge/Version-2025.08.07~ynh1-rgba(0,150,0,1)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/fossflow/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/fossflow"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
 <a href="https://github.com/YunoHost-Apps/fossflow_ynh/issues"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_report_an_issue.svg"/></a>
 </div>
+
+
+## Screenshots
+![Screenshot of FossFLOW](./doc/screenshots/fossflow_ynh.png)
 
 ## 📦 Developer info
 
