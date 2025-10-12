@@ -7,7 +7,7 @@ name = "FossFLOW"
 description.en = "Isometric diagramming tool"
 description.fr = "Outil pour réaliser des diagrammes isométriques"
 
-version = "2025.10.05~ynh1"
+version = "2025.10.11~ynh1"
 
 maintainers = ["oleole39"]
 
@@ -47,8 +47,8 @@ ram.runtime = "10M"
 
         [resources.sources.main]
         # This is not used as we are using git clone. It's only here for autoupdate.
-        url = "https://github.com/stan-smith/FossFLOW/archive/2a53437ad0d59592694f58c5ef515d91728e3493.tar.gz"
-        sha256 = "b781c7df5051c4e2eac67bd0854a0491cc8bd047ec648ef10c90757ea7bcda3d"
+        url = "https://github.com/stan-smith/FossFLOW/archive/a3c5b7cafb8f2573e26a8dd086d51f037feb9fb6.tar.gz"
+        sha256 = "5c934cd0983afb15b184b72678cbe364b902fb4f159aa07c6fd44f71ef4c3aca"
         prefetch = false
         autoupdate.strategy = "latest_github_commit"
         
