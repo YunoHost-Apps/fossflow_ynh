@@ -1,0 +1,57 @@
+#!/bin/bash
+# In simple cases, you don't need a config script.
+
+# With a simple config_panel.toml, you can write in the app settings, in the
+# upstream config file or replace complete files (logo ...) and restart services.
+
+# The config scripts allows you to go further, to handle specific cases
+# (validation of several interdependent fields, specific getter/setter for a value,
+# display dynamic informations or choices, pre-loading of config type .cube... ).
+
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source /usr/share/yunohost/helpers
+
+ynh_abort_if_errors
+
+#=================================================
+# RETRIEVE ARGUMENTS
+#=================================================
+
+install_dir=$(ynh_app_setting_get --key=install_dir)
+config_file="$install_dir/.env"
+
+#=================================================
+# SPECIFIC GETTERS FOR TOML SHORT KEY
+#=================================================
+
+get__enable_server_storage() {
+    local bool_val="$(grep -E '^ENABLE_SERVER_STORAGE=' $config_file | cut -d= -f2)"
+    echo $bool_val
+}
+
+#=================================================
+# SPECIFIC SETTERS FOR TOML SHORT KEYS
+#=================================================
+
+set__enable_server_storage() {
+    ynh_replace --match="^ENABLE_SERVER_STORAGE=.*$" --replace="ENABLE_SERVER_STORAGE=$enable_server_storage" --file="$config_file"
+    ynh_store_file_checksum "$config_file"
+
+    if $enable_server_storage; then
+	    systemctl enable "$app.service" --quiet
+	    systemctl daemon-reload
+	    yunohost service add "$app" --description="FossFLOW persisent storage backend" --log="/var/log/$app/$app.log"
+	    ynh_systemctl --service="$app" --action="start" --log_path="systemd"
+    else
+        ynh_systemctl --service="$app" --action="stop" --log_path="systemd"
+        yunohost service remove "$app"
+        systemctl disable "$app.service" --quiet
+        systemctl daemon-reload
+    fi
+}
+
+#=================================================
+ynh_app_config_run "$1"

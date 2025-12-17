@@ -1,0 +1,17 @@
+#:schema https://github.com/YunoHost/apps/raw/master/schemas/config_panel.v1.schema.json
+
+version = "1.0"
+
+[main]
+name.en = "Main configuration"
+name.fr = "Configuration principale"
+
+    [main.main]
+        [main.main.enable_server_storage]
+        ask.en = "Offer saving drawings on the server"
+        ask.fr = "Permettre de sauvegarder les dessins sur le serveur"
+        help.en = "If disabled, nothing leaves the user's browser"
+        help.fr = "Si désactivé, rien ne quitte le navigateur de l'utilisateur"
+        type = "boolean"
+        default = false
+        bind = "null"

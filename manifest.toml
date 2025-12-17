@@ -41,6 +41,14 @@ ram.runtime = "10M"
     type = "group"
     default = "visitors"
 
+    [install.enable_server_storage]
+    ask.en = "Offer saving drawings on the server"
+    ask.fr = "Permettre de sauvegarder les dessins sur le serveur"
+    help.en = "If disabled, nothing leaves the user's browser"
+    help.fr = "Si désactivé, rien ne quitte le navigateur de l'utilisateur"
+    type = "boolean"
+    default = false
+
 [resources]
 
     [resources.sources]
@@ -66,3 +74,10 @@ ram.runtime = "10M"
     
     [resources.permissions]
     main.url = "/"
+
+    [resources.ports]
+
+    [resources.data_dir]
+
+	[resources.nodejs]
+	version = "22"

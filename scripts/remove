@@ -11,7 +11,10 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Removing system configurations related to $app..."
 
-ynh_config_remove_nginx
+ynh_config_remove_systemd
+yunohost service remove "$app"
+
+ynh_config_remove_nginx	
 
 #=================================================
 # END OF SCRIPT
