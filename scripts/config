@@ -37,9 +37,18 @@ get__enable_server_storage() {
 #=================================================
 
 set__enable_server_storage() {
+	# Convert numeric boolean to letter boolean
+	if [ $enable_server_storage -eq 0 ]; then
+		$enable_server_storage="false"
+	else
+		$enable_server_storage="true"
+	fi
+
+	# Write setting
     ynh_replace --match="^ENABLE_SERVER_STORAGE=.*$" --replace="ENABLE_SERVER_STORAGE=$enable_server_storage" --file="$config_file"
     ynh_store_file_checksum "$config_file"
 
+	# Toogle server storage
     if $enable_server_storage; then
 	    systemctl enable "$app.service" --quiet
 	    systemctl daemon-reload
