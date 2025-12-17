@@ -5,7 +5,6 @@
 #=================================================
 
 source /usr/share/yunohost/helpers
-echo "ESS=$enable_server_storage"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
