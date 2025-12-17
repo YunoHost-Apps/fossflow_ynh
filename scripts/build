@@ -43,8 +43,12 @@ function ynh_build_instructions {
 	PUBLIC_URL="__YNH_DOMAIN____YNH_SUBDIR_PATH__" npm run build
 
 	mv packages/fossflow-app/build app
+	
 	mkdir -p app/backend
-	mv packages/fossflow-backend/server.js app/backend/server.js
+	mv packages/fossflow-backend/* app/backend
+	pushd "app/packages/fossflow-backend"
+		npm install --production
+	popd
 }
 
 #=================================================
