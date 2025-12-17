@@ -44,12 +44,12 @@ function ynh_build_instructions {
 
 	mv packages/fossflow-app/build app
 	
-	mkdir -p app/backend
-	mv packages/fossflow-backend/* app/backend
-	pushd "app/packages/fossflow-backend"
+	pushd "packages/fossflow-backend"
 		npm install --production
-		dirs -l -v
-	popd +0
+	popd
+	
+	mkdir -p app/backend
+	mv packages/fossflow-backend/* app/backend	
 }
 
 #=================================================
