@@ -18,14 +18,14 @@ ynh_systemctl --service="$app" --action="stop" --log_path="systemd"
 #=================================================
 
 # Prepare var for string replacement (empty if $path is root or $path if subdir is defined)
-old_path_2=""
-if [[ $old_path != '/' ]]; then old_path_2=$old_path; fi
-new_path_2=""
-if [[ $new_path != '/' ]]; then new_path_2=$new_path; fi
+#~ old_path_2=""
+#~ if [[ $old_path != '/' ]]; then old_path_2=$old_path; fi
+#~ new_path_2=""
+#~ if [[ $new_path != '/' ]]; then new_path_2=$new_path; fi
 
 # Replace base URL recursively in all files of the app folder
-match_regex="$old_domain$old_path_2"
-grep --extended-regexp --recursive --files-with-matches --ignore-case "$match_regex" $install_dir/* | xargs -d '\n' sed --regexp-extended --in-place "s@$match_regex@$new_domain$new_path_2@g"
+match_regex="$old_path"
+grep --extended-regexp --recursive --files-with-matches --ignore-case "$match_regex" $install_dir/* | xargs -d '\n' sed --regexp-extended --in-place "s@$match_regex@$new_path@g"
 
 #=================================================
 # MODIFY URL IN NGINX CONF
