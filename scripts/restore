@@ -36,7 +36,7 @@ ynh_script_progression "Reloading NGINX web server and $app's service..."
 
 ynh_systemctl --service=nginx --action=reload
 
-if $enable_server_storage; then
+if [ "$enable_server_storage" -eq 1 ]; then
 	systemctl enable "$app.service" --quiet
 	systemctl daemon-reload
 	yunohost service add "$app" --description="FossFLOW persisent storage backend" --log="/var/log/$app/$app.log"
