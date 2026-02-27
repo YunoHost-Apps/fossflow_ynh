@@ -6,20 +6,16 @@
 
 source /usr/share/yunohost/helpers
 
+if [[ "$path" != "/" ]]; then
+    ynh_die "Installing Fossflow on a subpath is not supported anymore since v2025.12.08~ynh1 (cf. https://github.com/YunoHost-Apps/fossflow_ynh/pull/37)"
+fi
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
 ynh_setup_source --dest_dir="$install_dir" --source_id="ynh_build" --full_replace
-
-# Prepare $newpath for string replacement (empty if $path is root or $path if subdir is defined)
-newpath=""
-if [[ $path != '/' ]]; then newpath=$path; fi
-
-# Replace path placeholder recursively in all files of the app folder
-match_regex="/?__YNH_DOMAIN____YNH_SUBDIR_PATH__"
-grep --extended-regexp --recursive --files-with-matches --ignore-case "$match_regex" $install_dir/* | xargs -d '\n' sed --regexp-extended --in-place "s@$match_regex@https://$domain$newpath@g"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -28,6 +24,30 @@ ynh_script_progression "Upgrading system configurations related to $app..."
 
 # Create a dedicated NGINX config using the conf/nginx.conf template
 ynh_config_add_nginx
+
+ynh_config_add --template=".env" --destination="$install_dir/.env"
+
+#=================================================
+# INSTALL BACKEND
+#=================================================
+ynh_script_progression "Installing $app backend..."
+
+# Deploy optional backend
+pushd "$install_dir/backend/"
+	ynh_hide_warnings npm install --production
+popd
+ynh_config_add --template="systemd.service" --destination="/etc/systemd/system/$app.service"
+
+# Enable optional backend according to admin choice
+if [ "$enable_server_storage" == "true" ]; then
+	systemctl enable "$app.service" --quiet
+	systemctl daemon-reload
+	yunohost service add "$app" --description="FossFLOW persisent storage backend" --log="/var/log/$app/$app.log"
+	ynh_systemctl --service="$app" --action="start" --log_path="systemd"
+fi
+
+# Allow frontend access to saved diagrams
+chown -R "$app:www-data" "$data_dir"
 
 #=================================================
 # END OF SCRIPT

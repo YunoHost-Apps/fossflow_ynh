@@ -18,8 +18,15 @@ ynh_backup "$install_dir"
 # SYSTEM CONFIGURATION
 #=================================================
 
-# Backup the NGINX configuration
 ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf"
+
+ynh_backup "/etc/systemd/system/$app.service"
+
+#=================================================
+# BACKUP THE DATA DIR
+#=================================================
+
+ynh_backup "$data_dir"
 
 #=================================================
 # END OF SCRIPT
