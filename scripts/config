@@ -24,15 +24,6 @@ install_dir=$(ynh_app_setting_get --key=install_dir)
 config_file="$install_dir/.env"
 
 #=================================================
-# SPECIFIC GETTERS FOR TOML SHORT KEY
-#=================================================
-
-#~ get__enable_server_storage() {
-    #~ local bool_val="$(grep -E '^ENABLE_SERVER_STORAGE=' $config_file | cut -d= -f2)"
-    #~ echo $bool_val
-#~ }
-
-#=================================================
 # SPECIFIC SETTERS FOR TOML SHORT KEYS
 #=================================================
 
