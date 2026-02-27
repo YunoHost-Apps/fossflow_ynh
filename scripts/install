@@ -38,7 +38,7 @@ if [ "$enable_server_storage" == "true" ]; then
 fi
 
 # Allow frontend access to saved diagrams 
-chown -R "$app:www-data" "$data_dir/$app"
+chown -R "$app:www-data" "$data_dir"
 
 #=================================================
 # END OF SCRIPT

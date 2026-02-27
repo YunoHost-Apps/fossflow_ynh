@@ -26,7 +26,7 @@ ynh_config_change_url_nginx
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-if [ "$enable_server_storage" -eq 1 ]; then
+if [ "$enable_server_storage" == "true" ]; then
 	ynh_systemctl --service="$app" --action="start" --log_path="systemd"
 fi
 
