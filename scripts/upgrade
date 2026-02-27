@@ -46,6 +46,9 @@ if [ "$enable_server_storage" == "true" ]; then
 	ynh_systemctl --service="$app" --action="start" --log_path="systemd"
 fi
 
+# Allow frontend access to saved diagrams 
+chown -R "$app:www-data" "$data_dir"
+
 #=================================================
 # END OF SCRIPT
 #=================================================
