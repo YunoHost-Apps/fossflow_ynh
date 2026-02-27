@@ -40,11 +40,11 @@ function ynh_build_instructions {
     #=================================================
 	npm install -g npm@11.5.2 #cf. https://github.com/stan-smith/FossFLOW/blob/6cb649602c10e20ec59431341f774ff2f0264ee0/Dockerfile#L13
 	npm install
-	PUBLIC_URL="__YNH_DOMAIN____YNH_SUBDIR_PATH__" npm run build
+	npm run build
 
 	mv packages/fossflow-app/build app
 	mkdir -p app/backend
-	mv packages/fossflow-backend/server.js app/backend/server.js
+	mv packages/fossflow-backend/* app/backend	
 }
 
 #=================================================

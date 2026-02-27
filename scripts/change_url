@@ -7,6 +7,13 @@
 source /usr/share/yunohost/helpers
 
 #=================================================
+# STOP SYSTEMD SERVICE
+#=================================================
+ynh_script_progression "Stopping $app's systemd service..."
+
+ynh_systemctl --service="$app" --action="stop" --log_path="systemd"
+
+#=================================================
 # CHANGE HARDCODED URLS IN APP FILES
 #=================================================
 
@@ -17,8 +24,8 @@ new_path_2=""
 if [[ $new_path != '/' ]]; then new_path_2=$new_path; fi
 
 # Replace base URL recursively in all files of the app folder
-match_regex="$old_domain$old_path_2"
-grep --extended-regexp --recursive --files-with-matches --ignore-case "$match_regex" $install_dir/* | xargs -d '\n' sed --regexp-extended --in-place "s@$match_regex@$new_domain$new_path_2@g"
+match_regex="$old_path2"
+grep --extended-regexp --recursive --files-with-matches --ignore-case "$match_regex" $install_dir/* | xargs -d '\n' sed --regexp-extended --in-place "s@$match_regex@$new_path2@g"
 
 #=================================================
 # MODIFY URL IN NGINX CONF
@@ -27,6 +34,15 @@ ynh_script_progression "Updating NGINX web server configuration..."
 
 # this will most likely adjust NGINX config correctly
 ynh_config_change_url_nginx
+
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
+ynh_script_progression "Starting $app's systemd service..."
+
+if [ "$enable_server_storage" -eq 1 ]; then
+	ynh_systemctl --service="$app" --action="start" --log_path="systemd"
+fi
 
 #=================================================
 # END OF SCRIPT

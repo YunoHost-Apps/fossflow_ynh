@@ -13,14 +13,6 @@ ynh_script_progression "Setting up source files..."
 
 ynh_setup_source --dest_dir="$install_dir" --source_id="ynh_build"
 
-# Prepare $newpath for string replacement (empty if $path is root or $path if subdir is defined)
-newpath=""
-if [[ $path != '/' ]]; then newpath=$path; fi
-
-# Replace path placeholder recursively in all files of the app folder
-match_regex="/?__YNH_DOMAIN____YNH_SUBDIR_PATH__"
-grep --extended-regexp --recursive --files-with-matches --ignore-case "$match_regex" $install_dir/* | xargs -d '\n' sed --regexp-extended --in-place "s@$match_regex@https://$domain$newpath@g"
-
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
@@ -28,6 +20,22 @@ ynh_script_progression "Adding system configurations related to $app..."
 
 # Create a dedicated NGINX config using the conf/nginx.conf template
 ynh_config_add_nginx
+
+ynh_config_add --template=".env" --destination="$install_dir/.env"
+
+# Deploy optional backend
+pushd "$install_dir/backend/"
+	ynh_hide_warnings npm install --production
+popd
+ynh_config_add --template="systemd.service" --destination="/etc/systemd/system/$app.service"
+
+# Enable optional backend according to admin choice
+if [ "$enable_server_storage" -eq 1 ]; then
+	systemctl enable "$app.service" --quiet
+	systemctl daemon-reload
+	yunohost service add "$app" --description="FossFLOW persisent storage backend" --log="/var/log/$app/$app.log"
+	ynh_systemctl --service="$app" --action="start" --log_path="systemd"
+fi
 
 #=================================================
 # END OF SCRIPT
