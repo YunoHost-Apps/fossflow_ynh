@@ -34,7 +34,7 @@ popd
 ynh_config_add --template="systemd.service" --destination="/etc/systemd/system/$app.service"
 
 # Enable optional backend according to admin choice
-if [ "$enable_server_storage" -eq 1 ]; then
+if [ "$enable_server_storage" == "true" ]; then
 	systemctl enable "$app.service" --quiet
 	systemctl daemon-reload
 	yunohost service add "$app" --description="FossFLOW persisent storage backend" --log="/var/log/$app/$app.log"
