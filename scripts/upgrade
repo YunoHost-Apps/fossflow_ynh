@@ -27,6 +27,11 @@ ynh_config_add_nginx
 
 ynh_config_add --template=".env" --destination="$install_dir/.env"
 
+#=================================================
+# INSTALL BACKEND
+#=================================================
+ynh_script_progression "Installing $app backend..."
+
 # Deploy optional backend
 pushd "$install_dir/backend/"
 	ynh_hide_warnings npm install --production
