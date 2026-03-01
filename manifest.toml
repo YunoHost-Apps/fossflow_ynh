@@ -63,8 +63,8 @@ ram.runtime = "10M"
         autoupdate.strategy = "latest_github_commit"
         
         [resources.sources.ynh_build]
-        url = "https://github.com/oleole39/fossflow_ynh/releases/download/v2026.02.20-8f307cdf/FossFLOW_v2026.02.20-8f307cdf_ynh.zip"
-        sha256 = "be9716c65e0c79fcd5fca26912f7d99daf748a325bc958e93d82fe543b5d7ac6"
+        url = "https://github.com/oleole39/fossflow_ynh/releases/download/v2026.03.01-acdc02b9/FossFLOW_v2026.03.01-acdc02b9_ynh.zip"
+        sha256 = "c6c68c6669073fe85d5d6ffd3a79f072fae46c910557001c522fbbf8efe6bda5"
         format = "zip"
         extract = true
         in_subdir = true
