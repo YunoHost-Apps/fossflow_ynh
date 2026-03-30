@@ -5,7 +5,8 @@ on:
     branches: [ "testing" ]
 
 permissions: 
-    contents: write #required for 'draft_release', cf. https://github.com/softprops/action-gh-release/issues/572
+    contents: write #required for 'draft_release' step, cf. https://github.com/softprops/action-gh-release/issues/572
+    pull-requests: write #required for 'create/edit PR' step
 
 jobs: 
   ynh-app-release:
