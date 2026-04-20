@@ -48,8 +48,8 @@ ram.runtime = "10M"
     help.fr = "Si désactivé, rien ne quitte le navigateur de l'utilisateur"
     type = "boolean"
     default = 0
-    yes="true"
-    no="false"
+    #yes="true"
+    #no="false"
 
 [resources]
 
