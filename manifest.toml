@@ -82,4 +82,4 @@ ram.runtime = "10M"
     [resources.data_dir]
 
 	[resources.nodejs]
-	version = "22"
+	version = "24"
