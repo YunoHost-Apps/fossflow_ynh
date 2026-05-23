@@ -17,7 +17,7 @@ userdoc = "https://github.com/stan-smith/FossFLOW?tab=readme-ov-file#how-to-use"
 code = "https://github.com/stan-smith/FossFLOW"
 
 [antifeatures]
-deprecated-software.en = "The upstream repository of the app has suddenly disappeared. The app will not be installable anymore and will be moved to the app graveyard."
+deprecated-software.en = "The upstream repository of the app has suddenly disappeared. The app is not installable at the moment and will be moved to the app graveyard if the repository does not come back online soon."
 
 [integration]
 yunohost = ">= 12.1.38"
